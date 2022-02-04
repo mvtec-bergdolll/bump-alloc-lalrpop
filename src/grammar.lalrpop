@@ -1,0 +1,29 @@
+use bumpalo::Bump;
+
+use lalrpop_util::{ErrorRecovery};
+
+use crate::ast::Expr;
+use crate::lex::{Token, LexError};
+
+grammar<'input, 'alloc, 'err>(
+    bump: &'alloc Bump,
+    errors: &'err mut Vec<
+        ErrorRecovery<usize, Token<'input>, LexError>
+    >,
+);
+
+extern {
+    type Location = usize;
+    type Error = LexError;
+
+    enum Token<'input> {
+        "A" => Token::A(<&'input str>),
+        "B" => Token::B(<&'input str>),
+        "C" => Token::C(<&'input str>),
+    }
+}
+
+pub Lang: Expr<'input> = {
+    "A" => Expr::A(Box::new(Expr::End(<>))),
+    "B" => Expr::B(Box::new(Expr::End(<>))),
+}

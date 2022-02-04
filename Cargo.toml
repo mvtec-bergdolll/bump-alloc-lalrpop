@@ -1,0 +1,12 @@
+[package]
+name = "bump-alloc-lalrpop"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+bumpalo = { version="3.9", default-features=false, features=["collections"] }
+lalrpop-util = { version="0.19.5", default-features=false }
+
+# Add a build-time dependency on the lalrpop library:
+[build-dependencies]
+lalrpop = { version="0.19.5", default-features=false }
