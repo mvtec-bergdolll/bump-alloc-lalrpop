@@ -23,7 +23,7 @@ extern {
     }
 }
 
-pub Lang: Expr<'input> = {
-    "A" => Expr::A(Box::new(Expr::End(<>))),
-    "B" => Expr::B(Box::new(Expr::End(<>))),
+pub Lang: Expr<'input, 'alloc> = {
+    "A" => Expr::A(bump.alloc(Expr::End(<>))),
+    "B" => Expr::B(bump.alloc(Expr::End(<>))),
 }
