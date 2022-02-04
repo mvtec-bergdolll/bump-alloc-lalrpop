@@ -1,6 +1,6 @@
 #[derive(Debug)]
-pub enum Expr<'input> {
-    A(Box<Expr<'input>>),
-    B(Box<Expr<'input>>),
+pub enum Expr<'input, 'alloc> {
+    A(&'alloc Expr<'input, 'alloc>),
+    B(&'alloc Expr<'input, 'alloc>),
     End(&'input str),
 }
